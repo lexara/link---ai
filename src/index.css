@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #F5F6F7;
+    color: #1F2937;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  
+  /* Technical Fabric Texture - Light - Hyper Realistic */
+  .bg-fabric-light {
+    background-color: #F2F3F5; /* Slightly cooler off-white */
+    background-image: 
+      /* Micro-weave pattern */
+      linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+      /* Subtle diagonal fiber hint */
+      repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.4) 2px, rgba(255,255,255,0.4) 3px);
+    background-size: 4px 4px, 4px 4px, 12px 12px;
+    position: relative;
+  }
+
+  .bg-fabric-light::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* High-res noise for tactile paper/fabric feel */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: multiply;
+  }
+
+  /* Deep Deboss (Pressed In) - Hyper Realistic */
+  .deboss-panel-light {
+    background: #F2F3F5;
+    box-shadow: 
+      /* Deep inner shadow (top-left) */
+      inset 2px 2px 6px rgba(163, 177, 198, 0.4),
+      inset 4px 4px 12px rgba(163, 177, 198, 0.2),
+      /* Soft inner highlight (bottom-right) */
+      inset -2px -2px 6px rgba(255, 255, 255, 0.9),
+      inset -4px -4px 12px rgba(255, 255, 255, 0.6),
+      /* External subtle drop shadow for depth */
+      1px 1px 2px rgba(255, 255, 255, 0.8),
+      -1px -1px 2px rgba(163, 177, 198, 0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .deboss-panel-light:hover {
+    box-shadow: 
+      inset 3px 3px 8px rgba(163, 177, 198, 0.5),
+      inset 6px 6px 16px rgba(163, 177, 198, 0.3),
+      inset -3px -3px 8px rgba(255, 255, 255, 1),
+      inset -6px -6px 16px rgba(255, 255, 255, 0.8);
+    transform: translateY(1px);
+  }
+
+  /* Text Deboss - Hyper Realistic */
+  .text-deboss-light {
+    color: rgba(55, 65, 81, 0.85);
+    text-shadow: 
+      1px 1px 0px rgba(255, 255, 255, 0.9), /* Sharp highlight */
+      -1px -1px 1px rgba(163, 177, 198, 0.3); /* Soft shadow */
+  }
+
+  /* Molded Tray Edge - Realistic Plastic/Pulp */
+  .molded-tray {
+    box-shadow: 
+      /* Inner ridge shadow */
+      inset 2px 2px 4px rgba(163, 177, 198, 0.3),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.9),
+      /* Outer drop shadow */
+      10px 10px 30px rgba(163, 177, 198, 0.4),
+      -10px -10px 30px rgba(255, 255, 255, 0.9);
+    border-radius: 32px;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+
+  /* Hyper-Realistic LED - Brighter Pop */
+  .led-green {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    /* White hot center -> bright neon green -> deep green */
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #4ade80 40%, #16a34a 100%);
+    box-shadow: 
+      /* Inner hard shadow for bezel contact */
+      inset 0 0 1px rgba(0,0,0,0.3),
+      /* Core Glow */
+      0 0 4px 1px #4ade80,
+      /* Intense Bloom */
+      0 0 10px 2px rgba(74, 222, 128, 0.9),
+      /* Ambient Spill */
+      0 0 20px 8px rgba(74, 222, 128, 0.4);
+    position: relative;
+    z-index: 10;
+  }
+  
+  .led-green::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 30%;
+    height: 30%;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.9;
+    filter: blur(0.5px);
+    box-shadow: 0 0 4px white;
+  }
+
+  .led-container {
+    background: #d1d5db; /* Darker gray for contrast */
+    border-radius: 999px;
+    box-shadow: 
+      /* Deeper recess */
+      inset 1px 1px 3px rgba(0,0,0,0.3),
+      inset -1px -1px 2px rgba(255,255,255,0.9);
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+}
