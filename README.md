@@ -3,17 +3,6 @@
 
 This project is configured to deploy automatically to GitHub Pages and use the custom domain `www.link---ai.com`.
 
-## Run locally
-
-Prerequisites: Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
-
 ## Deploy to GitHub Pages
 
 1. Push this repository to GitHub.
